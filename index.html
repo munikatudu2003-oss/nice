@@ -3,242 +3,182 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>贪吃蛇游戏</title>
+  <title>OpenClaw 跨境电商多 Agent 流水线</title>
   <style>
     :root {
       color-scheme: dark;
       font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at top, #1e293b, #020617);
+      background: linear-gradient(180deg, #020617 0%, #0b1120 40%, #020617 100%);
+      color: #e2e8f0;
+      line-height: 1.65;
+    }
+    .container {
+      width: min(960px, 92vw);
+      margin: 36px auto 72px;
+    }
+    .hero {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0 0 12px; font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+    h2 {
+      margin: 26px 0 12px;
+      font-size: 1.25rem;
+      color: #93c5fd;
+      border-left: 4px solid #38bdf8;
+      padding-left: 10px;
+    }
+    h3 { margin: 20px 0 8px; color: #bfdbfe; }
+    .meta { color: #94a3b8; font-size: 0.95rem; }
+    .card {
+      background: rgba(15, 23, 42, 0.64);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+    ul, ol { padding-left: 22px; margin: 10px 0; }
+    li { margin: 8px 0; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 6px;
+      padding: 2px 6px;
       color: #f8fafc;
     }
-    .game-wrap {
-      width: min(92vw, 520px);
-      background: rgba(15, 23, 42, 0.86);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      border-radius: 16px;
-      box-shadow: 0 20px 45px rgba(2, 6, 23, 0.5);
-      padding: 18px;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-    }
-    .title {
-      margin: 0;
-      font-size: 1.35rem;
-    }
-    .meta {
-      font-size: 0.96rem;
-      color: #cbd5e1;
-    }
-    canvas {
-      width: 100%;
-      aspect-ratio: 1;
-      display: block;
-      border-radius: 10px;
-      background: #0f172a;
+    pre {
+      background: #020617;
       border: 1px solid rgba(148, 163, 184, 0.35);
-    }
-    .panel {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    button {
-      border: 0;
-      background: #16a34a;
-      color: #f0fdf4;
-      font-weight: 600;
-      border-radius: 10px;
-      padding: 8px 14px;
-      cursor: pointer;
-    }
-    button:hover { background: #22c55e; }
-    .tip {
-      margin: 0;
-      color: #93c5fd;
+      border-radius: 12px;
+      padding: 14px;
+      overflow-x: auto;
       font-size: 0.9rem;
     }
-    .status {
-      color: #facc15;
-      font-weight: 700;
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .kpi-item {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.92rem;
+    }
+    .tag {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.18);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      font-size: 0.84rem;
     }
   </style>
 </head>
 <body>
-  <section class="game-wrap" aria-label="贪吃蛇游戏">
-    <header class="header">
-      <h1 class="title">🐍 贪吃蛇</h1>
-      <div class="meta">得分：<span id="score">0</span></div>
-    </header>
-    <canvas id="board" width="480" height="480"></canvas>
-    <div class="panel">
-      <button id="restart" type="button">重新开始</button>
-      <p class="tip">方向键 / WASD 控制移动，吃到红色食物会加分。</p>
-      <span class="status" id="status"></span>
-    </div>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <div class="meta">饼干哥哥AGI（2.0） · 12小时前</div>
+      <h1>用 OpenClaw 搭跨境电商团队：5 个 AI 员工，跑通全平台矩阵</h1>
+      <p>在 Mac mini 本地部署 OpenClaw 后，我设计了一套多 Agent 协作流水线：选品调研、GEO 内容、Reddit 引流、TikTok 视频都可以自动并行跑完。</p>
+      <div class="kpi">
+        <div class="kpi-item">👨‍💼 1 个总控 Agent 统一接需求</div>
+        <div class="kpi-item">🤖 4 个执行 Agent 并发作业</div>
+        <div class="kpi-item">🔁 sessions_send 异步穿透协作</div>
+      </div>
+    </section>
 
-  <script>
-    const canvas = document.getElementById('board');
-    const ctx = canvas.getContext('2d');
-    const scoreEl = document.getElementById('score');
-    const statusEl = document.getElementById('status');
-    const restartBtn = document.getElementById('restart');
+    <section class="card">
+      <h2>01｜5 个核心员工</h2>
+      <ul>
+        <li><strong>lead（大总管）</strong>：唯一对人接口，负责拆解需求和跨节点调度。</li>
+        <li><strong>voc-analyst</strong>：抓取评论与竞品信息，提炼用户痛点。</li>
+        <li><strong>geo-optimizer</strong>：用 GEO 思维写亚马逊/独立站内容，强调数据与权威引文。</li>
+        <li><strong>reddit-spec</strong>：执行 5 周养号 SOP，在高权重帖子下做精准评论引流。</li>
+        <li><strong>tiktok-director</strong>：生成 25 宫格 UGC 分镜，并串联生图与成片技能。</li>
+      </ul>
+    </section>
 
-    const gridSize = 24;
-    const tileSize = canvas.width / gridSize;
+    <section class="card">
+      <h2>02｜协作逻辑：异步状态机流水线</h2>
+      <ol>
+        <li>在飞书 @lead 下达任务。</li>
+        <li>lead 分发给 <code>voc-analyst</code>，提炼痛点（如承重不足、收纳麻烦）。</li>
+        <li><code>geo-optimizer</code> 生成带定量数据与来源引用的 GEO 内容。</li>
+        <li><code>reddit-spec</code> 在 Google 高排名老帖下做高质量回复，劫持长尾流量。</li>
+        <li><code>tiktok-director</code> 读取痛点，输出分镜并调用技能生成 15 秒视频。</li>
+      </ol>
+      <div>
+        <span class="tag">异步分发</span>
+        <span class="tag">并发执行</span>
+        <span class="tag">人工审批</span>
+      </div>
+    </section>
 
-    const directionMap = {
-      ArrowUp: { x: 0, y: -1 },
-      ArrowDown: { x: 0, y: 1 },
-      ArrowLeft: { x: -1, y: 0 },
-      ArrowRight: { x: 1, y: 0 },
-      w: { x: 0, y: -1 },
-      s: { x: 0, y: 1 },
-      a: { x: -1, y: 0 },
-      d: { x: 1, y: 0 },
-      W: { x: 0, y: -1 },
-      S: { x: 0, y: 1 },
-      A: { x: -1, y: 0 },
-      D: { x: 1, y: 0 },
-    };
+    <section class="card">
+      <h2>03｜从 0 到 1 飞书配置</h2>
+      <h3>步骤 1：工作区隔离</h3>
+      <pre><code>~/.openclaw/
+├── openclaw.json
+├── skills/
+├── workspace-lead/
+├── workspace-geo/
+├── workspace-reddit/
+└── workspace-tiktok/</code></pre>
 
-    let snake;
-    let velocity;
-    let nextVelocity;
-    let food;
-    let score;
-    let gameOver;
-    let gameTimer;
-
-    function randomFood() {
-      while (true) {
-        const pos = {
-          x: Math.floor(Math.random() * gridSize),
-          y: Math.floor(Math.random() * gridSize),
-        };
-        const onSnake = snake.some((part) => part.x === pos.x && part.y === pos.y);
-        if (!onSnake) return pos;
-      }
+      <h3>步骤 2：核心路由配置</h3>
+      <pre><code>{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "connectionMode": "websocket",
+      "dmPolicy": "open"
     }
-
-    function resetGame() {
-      snake = [
-        { x: 12, y: 12 },
-        { x: 11, y: 12 },
-        { x: 10, y: 12 },
-      ];
-      velocity = { x: 1, y: 0 };
-      nextVelocity = { x: 1, y: 0 };
-      food = randomFood();
-      score = 0;
-      gameOver = false;
-      scoreEl.textContent = String(score);
-      statusEl.textContent = '';
-      clearInterval(gameTimer);
-      gameTimer = setInterval(tick, 110);
-      draw();
+  },
+  "bindings": [
+    { "agentId": "lead", "match": { "channel": "feishu", "accountId": "lead" } },
+    { "agentId": "geo-optimizer", "match": { "channel": "feishu", "accountId": "geo" } },
+    { "agentId": "reddit-spec", "match": { "channel": "feishu", "accountId": "reddit" } },
+    { "agentId": "tiktok-director", "match": { "channel": "feishu", "accountId": "tiktok" } }
+  ],
+  "tools": {
+    "agentToAgent": {
+      "enabled": true,
+      "allow": ["lead", "geo-optimizer", "reddit-spec", "tiktok-director"]
     }
+  }
+}</code></pre>
 
-    function isReverse(newVel) {
-      return newVel.x === -velocity.x && newVel.y === -velocity.y;
-    }
+      <h3>步骤 3：写入人设与纪律</h3>
+      <p>把各 Agent 的 <code>SOUL.md</code> 与 <code>AGENTS.md</code> 配好。特别是 lead 必须只做调度、禁止亲自执行底层任务。</p>
+      <p>最后安装全局技能库（如 <code>nano-banana-pro</code>、<code>seedance2.0</code>），执行 <code>openclaw gateway restart</code>。</p>
+    </section>
 
-    function tick() {
-      if (gameOver) return;
-
-      velocity = nextVelocity;
-      const head = {
-        x: snake[0].x + velocity.x,
-        y: snake[0].y + velocity.y,
-      };
-
-      const hitWall = head.x < 0 || head.y < 0 || head.x >= gridSize || head.y >= gridSize;
-      const hitSelf = snake.some((part) => part.x === head.x && part.y === head.y);
-      if (hitWall || hitSelf) {
-        gameOver = true;
-        clearInterval(gameTimer);
-        statusEl.textContent = '游戏结束，点击“重新开始”再来一局！';
-        draw();
-        return;
-      }
-
-      snake.unshift(head);
-
-      if (head.x === food.x && head.y === food.y) {
-        score += 10;
-        scoreEl.textContent = String(score);
-        food = randomFood();
-      } else {
-        snake.pop();
-      }
-
-      draw();
-    }
-
-    function drawCell(pos, color, radius = 4) {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.roundRect(
-        pos.x * tileSize + 1,
-        pos.y * tileSize + 1,
-        tileSize - 2,
-        tileSize - 2,
-        radius
-      );
-      ctx.fill();
-    }
-
-    function drawGrid() {
-      ctx.fillStyle = '#0f172a';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = 'rgba(148, 163, 184, 0.10)';
-      ctx.lineWidth = 1;
-      for (let i = 1; i < gridSize; i += 1) {
-        const p = i * tileSize;
-        ctx.beginPath();
-        ctx.moveTo(p, 0);
-        ctx.lineTo(p, canvas.height);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(0, p);
-        ctx.lineTo(canvas.width, p);
-        ctx.stroke();
-      }
-    }
-
-    function draw() {
-      drawGrid();
-      drawCell(food, '#ef4444', 8);
-      snake.forEach((part, index) => {
-        drawCell(part, index === 0 ? '#22c55e' : '#16a34a', index === 0 ? 7 : 4);
-      });
-    }
-
-    document.addEventListener('keydown', (event) => {
-      const newVel = directionMap[event.key];
-      if (!newVel || gameOver) return;
-      if (!isReverse(newVel)) {
-        nextVelocity = newVel;
-      }
-    });
-
-    restartBtn.addEventListener('click', resetGame);
-
-    resetGame();
-  </script>
+    <section class="card">
+      <h2>04｜常见问题结论</h2>
+      <ul>
+        <li><strong>目录结构</strong>：必须物理隔离，避免上下文污染。</li>
+        <li><strong>组织方式</strong>：优先按职能设计 Agent，再做平台适配。</li>
+        <li><strong>模型分级</strong>：决策层用强模型，执行层用高性价比模型。</li>
+        <li><strong>飞书发布</strong>：变更后需创建新版本并发布，才会生效。</li>
+        <li><strong>机器人互艾特</strong>：用 sessions_send 走暗线，群消息做明线同步。</li>
+        <li><strong>技能层级</strong>：公共技能放全局，私有技能放专属 workspace。</li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
